@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+    <title>Character Counter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="counter-container">
+        <h1 class="main-heading">Character Counter</h1>
+
+        <label for="message">Your Message (Max 200 chars):</label>
+        <textarea id="message" maxlength="200" placeholder="Type your text here..."></textarea>
+        
+        <div class="progressive-bar">
+            <span class="bar-segment" id="bar-1"></span>
+            <span class="bar-segment" id="bar-2"></span>
+            <span class="bar-segment" id="bar-3"></span>
+            <span class="bar-segment" id="bar-4"></span>
+        </div>
+
+        <div class="inputs-row">
+            <div class="input-group">
+                <label>Characters Used</label>
+                <input type="text" id="chars-used" value="0" readonly>
+            </div>
+            
+            <div class="input-group">
+                <label>Characters Left</label>
+                <input type="text" id="chars-left" value="200" readonly>
+            </div>
+        </div>
+
+        <button id="clear-btn" class="clear-btn">Clear Text</button>
+    </div>
+
+    <script>
+        const textarea = document.getElementById('message');
+        const charsUsedInput = document.getElementById('chars-used');
+        const charsLeftInput = document.getElementById('chars-left');
+        const clearBtn = document.getElementById('clear-btn');
+        
+        // Individual progress segments
+        const bar1 = document.getElementById('bar-1');
+        const bar2 = document.getElementById('bar-2');
+        const bar3 = document.getElementById('bar-3');
+        const bar4 = document.getElementById('bar-4');
+
+        const MAX_CHARS = 200;
+
+        textarea.addEventListener('input', () => {
+            const len = textarea.value.length;
+            
+            // 1. Update text inputs
+            charsUsedInput.value = len;
+            charsLeftInput.value = MAX_CHARS - len;
+
+            // 2. Progressive bar thresholds logic (All neon red)
+            if (len >= 50)  bar1.classList.add('lit-red');  else bar1.classList.remove('lit-red');
+            if (len >= 100) bar2.classList.add('lit-red');  else bar2.classList.remove('lit-red');
+            if (len >= 150) bar3.classList.add('lit-red');  else bar3.classList.remove('lit-red');
+            if (len >= 200) bar4.classList.add('lit-red');  else bar4.classList.remove('lit-red');
+
+            // 3. Toggle clear button visibility at 200 chars
+            if (len === MAX_CHARS) {
+                clearBtn.classList.add('show');
+            } else {
+                clearBtn.classList.remove('show');
+            }
+        });
+
+        // Clear functionality resetting text, counters, and bars
+        clearBtn.addEventListener('click', () => {
+            textarea.value = '';
+            charsUsedInput.value = 0;
+            charsLeftInput.value = MAX_CHARS;
+            
+            // Remove glow from all segments
+            bar1.classList.remove('lit-red');
+            bar2.classList.remove('lit-red');
+            bar3.classList.remove('lit-red');
+            bar4.classList.remove('lit-red');
+            
+            clearBtn.classList.remove('show');
+            textarea.focus();
+        });
+    </script>
+</body>
+</html>
