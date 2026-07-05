@@ -43,6 +43,10 @@ Character-Counter/
 └── script.js        # JavaScript logic for live counting and text clearing
 ---
 
-## 📂 Contributor
-* **jagadeeswaran-K007**
-# Character-Counter
+---
+
+## 👤 Author
+GitHub: @jagadeeswaran-k007
+⭐ If you found this project design helpful, feel free to give it a star!
+
+---
