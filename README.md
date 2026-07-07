@@ -36,17 +36,19 @@ Building this micro-project helped reinforce:
 ---
 ## 📂 Project Structure
 
-text
 Character-Counter/
 ├── index.html       # Layout and structure of the character counter
 ├── style.css        # UI styling and responsive layouts
 └── script.js        # JavaScript logic for live counting and text clearing
----
 
 ---
 
 ## 👤 Author
+
 GitHub: @jagadeeswaran-k007
+
+---
+
 ⭐ If you found this project design helpful, feel free to give it a star!
 
 ---
